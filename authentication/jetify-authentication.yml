@@ -1,0 +1,14 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.jetify.com/docs/nixhub/ + live requests (no auth headers required, HTTP 200)
+api: Nixhub API
+docs: https://www.jetify.com/docs/nixhub/
+summary: >-
+  The Nixhub API is publicly accessible and requires no authentication for personal use.
+  Requests are gated by IP-based rate limiting rather than credentials. Higher rate limits
+  and commercial use are arranged out-of-band by request (Typeform), not via API keys in the
+  current public v2 surface.
+schemes: []
+public: true
+rate_limited: true
+paid_tier_request: https://form.typeform.com/to/hueeLe9S
