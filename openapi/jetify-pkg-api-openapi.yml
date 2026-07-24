@@ -1,0 +1,116 @@
+openapi: 3.0.3
+info:
+  title: Nixhub Pkg API
+  version: 2.0.0
+  description: The Nixhub API lets you search over 1 million package versions for over 100,000 Nix packages. Search for packages, look up version history, and resolve a package name + version to a nixpkgs commit and flake installable for use with Devbox or Nix. Free for personal use, subject to IP-based rate limiting. Built and operated by Jetify.
+  contact:
+    name: Jetify
+    url: https://www.jetify.com/docs/nixhub/
+  termsOfService: https://www.jetify.com/legal/terms
+servers:
+- url: https://search.devbox.sh/v2
+  description: Nixhub production API (v2)
+tags:
+- name: Pkg
+paths:
+  /pkg:
+    get:
+      operationId: getPackage
+      summary: Get a Package
+      description: Get information about a specific package in Nixpkgs, including a list of releases, platforms, and outputs. Use this endpoint when you know the package name. To search for packages use /search; for only the latest matching version use /resolve.
+      parameters:
+      - name: name
+        in: query
+        required: true
+        description: The name of the package you want to look up. Must be a valid Nixpkgs package name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+        '400':
+          description: 'Bad Request: empty package name (set a ?name=<pkg> query parameter)'
+        '404':
+          description: Not Found
+      tags:
+      - Pkg
+components:
+  schemas:
+    Platform:
+      type: object
+      properties:
+        arch:
+          type: string
+        os:
+          type: string
+        systems:
+          type: string
+          description: The full Nix compatible name of the system. One of aarch64-darwin, aarch64-linux, x86_64-darwin, or x86_64-linux.
+        attribute_path:
+          type: string
+          description: The attribute path to the package in Nixpkgs. Used to install with Nix or Devbox.
+        commit_hash:
+          type: string
+          description: The hash of the Nixpkgs commit this package was last updated in.
+        date:
+          type: string
+          description: The date this package was last updated in Nixpkgs.
+        outputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Output'
+    Release:
+      type: object
+      properties:
+        version:
+          type: string
+        last_updated:
+          type: string
+        platforms:
+          type: array
+          items:
+            $ref: '#/components/schemas/Platform'
+        platforms_summary:
+          type: string
+          description: A summary string that represents the platforms the release can be installed on.
+        outputs_summary:
+          type: string
+          description: A summary string of the outputs (e.g., out, lib, dev) available for the release.
+    Output:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the output (e.g., out, lib, dev).
+        path:
+          type: string
+          description: The unique path to the output in the Nix store.
+        default:
+          type: boolean
+          description: Whether this output is the default output for the package.
+        nar:
+          type: string
+          description: The path to the package's NAR (Nix Archive) file containing build artifacts.
+    Package:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the package in Nixhub/Devbox.
+        summary:
+          type: string
+          description: A short description of the package.
+        homepage_url:
+          type: string
+          description: The URL to the package's project homepage.
+        license:
+          type: string
+          description: The software license of the package.
+        releases:
+          type: array
+          items:
+            $ref: '#/components/schemas/Release'

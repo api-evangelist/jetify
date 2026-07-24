@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info:
+  title: Nixhub Pkg Resolve API
+  version: 2.0.0
+  description: The Nixhub API lets you search over 1 million package versions for over 100,000 Nix packages. Search for packages, look up version history, and resolve a package name + version to a nixpkgs commit and flake installable for use with Devbox or Nix. Free for personal use, subject to IP-based rate limiting. Built and operated by Jetify.
+  contact:
+    name: Jetify
+    url: https://www.jetify.com/docs/nixhub/
+  termsOfService: https://www.jetify.com/legal/terms
+servers:
+- url: https://search.devbox.sh/v2
+  description: Nixhub production API (v2)
+tags:
+- name: Resolve
+paths:
+  /resolve:
+    get:
+      operationId: resolvePackageVersion
+      summary: Resolve a Package Version
+      description: Resolve a package name + version string to the latest matching version available in Nixpkgs. The response includes the flake installable information for the package on each supported platform.
+      parameters:
+      - name: name
+        in: query
+        required: true
+        description: The name of the package you want to resolve. Must be a valid Nixpkgs package name.
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: true
+        description: The version string of the package you want to resolve.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResolvedPackage'
+        '400':
+          description: '400 Bad Request: empty name (set a ?name=<value> query parameter)'
+        '404':
+          description: Not Found
+      tags:
+      - Resolve
+components:
+  schemas:
+    SystemInstallable:
+      type: object
+      properties:
+        flake_installable:
+          $ref: '#/components/schemas/FlakeInstallable'
+        last_updated:
+          type: string
+        outputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Output'
+    Output:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the output (e.g., out, lib, dev).
+        path:
+          type: string
+          description: The unique path to the output in the Nix store.
+        default:
+          type: boolean
+          description: Whether this output is the default output for the package.
+        nar:
+          type: string
+          description: The path to the package's NAR (Nix Archive) file containing build artifacts.
+    FlakeRef:
+      type: object
+      description: The full Nix reference to the flake that contains this package.
+      properties:
+        type:
+          type: string
+          description: The type of flake reference. Usually 'github'.
+        owner:
+          type: string
+          description: The owner of the repository that contains the flake. Usually 'NixOS'.
+        repo:
+          type: string
+          description: The repository that contains the flake. Usually 'nixpkgs'.
+        rev:
+          type: string
+          description: The Git revision of the flake. Usually a commit hash.
+    ResolvedPackage:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the package that was resolved.
+        version:
+          type: string
+          description: The latest version of the package that matches the version string provided.
+        summary:
+          type: string
+        systems:
+          type: object
+          description: A map of Nix system identifiers (aarch64-darwin, aarch64-linux, x86_64-darwin, x86_64-linux) to the installable details of the package on that system.
+          additionalProperties:
+            $ref: '#/components/schemas/SystemInstallable'
+    FlakeInstallable:
+      type: object
+      description: The information needed to install this package as a flake reference.
+      properties:
+        ref:
+          $ref: '#/components/schemas/FlakeRef'
+        attr_path:
+          type: string
+          description: The attribute path to the package in the flake. Used to install with Nix or Devbox.

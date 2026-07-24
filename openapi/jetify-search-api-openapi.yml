@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: Nixhub Pkg Search API
+  version: 2.0.0
+  description: The Nixhub API lets you search over 1 million package versions for over 100,000 Nix packages. Search for packages, look up version history, and resolve a package name + version to a nixpkgs commit and flake installable for use with Devbox or Nix. Free for personal use, subject to IP-based rate limiting. Built and operated by Jetify.
+  contact:
+    name: Jetify
+    url: https://www.jetify.com/docs/nixhub/
+  termsOfService: https://www.jetify.com/legal/terms
+servers:
+- url: https://search.devbox.sh/v2
+  description: Nixhub production API (v2)
+tags:
+- name: Search
+paths:
+  /search:
+    get:
+      operationId: searchPackages
+      summary: Search Packages
+      description: Search for packages in the Nixpkgs repository using a search query. The response includes a list of package names along with their description. To get available versions and installables for a package, use the returned name with /pkg.
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: Search query.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          description: 'Bad Request: empty search query (set a ?q=<query> query parameter)'
+        '404':
+          description: Not Found
+      tags:
+      - Search
+components:
+  schemas:
+    SearchResponse:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The search query sent to the /search endpoint.
+        total_results:
+          type: integer
+          description: The total number of results for the search query.
+        results:
+          type: array
+          description: A list of SearchResults that match the query. Empty if no results were found.
+          items:
+            $ref: '#/components/schemas/SearchResult'
+    SearchResult:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the package that matched the search query.
+        summary:
+          type: string
+          description: A short description of the package.
+        last_updated:
+          type: string
+          description: The last time this package was updated in the Nixpkgs repo.
