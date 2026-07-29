@@ -1,0 +1,8 @@
+generated: '2026-07-19'
+method: generated
+source: grounded in openapi/jetify-nixhub-openapi.yml
+skills:
+- name: jetify-resolve-nix-package
+  file: jetify-resolve-package.md
+  api: Nixhub API
+  operations: [searchPackages, getPackage, resolvePackageVersion]

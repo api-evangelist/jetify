@@ -1,0 +1,56 @@
+generated: '2026-07-19'
+method: derived
+source: derived from openapi/jetify-nixhub-openapi.yml component schemas
+api: Nixhub API
+entities:
+- name: SearchResult
+  key: name
+  fields: [name, summary, last_updated]
+- name: Package
+  key: name
+  fields: [name, summary, homepage_url, license, releases]
+- name: Release
+  key: version
+  fields: [version, last_updated, platforms, platforms_summary, outputs_summary]
+- name: Platform
+  fields: [arch, os, systems, attribute_path, commit_hash, date, outputs]
+- name: ResolvedPackage
+  key: name
+  fields: [name, version, summary, systems]
+- name: SystemInstallable
+  fields: [flake_installable, last_updated, outputs]
+- name: FlakeInstallable
+  fields: [ref, attr_path]
+- name: FlakeRef
+  fields: [type, owner, repo, rev]
+- name: Output
+  fields: [name, path, default, nar]
+relationships:
+- from: Package
+  to: Release
+  type: has_many
+  via: releases
+- from: Release
+  to: Platform
+  type: has_many
+  via: platforms
+- from: Platform
+  to: Output
+  type: has_many
+  via: outputs
+- from: ResolvedPackage
+  to: SystemInstallable
+  type: has_many
+  via: systems
+- from: SystemInstallable
+  to: FlakeInstallable
+  type: has_one
+  via: flake_installable
+- from: SystemInstallable
+  to: Output
+  type: has_many
+  via: outputs
+- from: FlakeInstallable
+  to: FlakeRef
+  type: has_one
+  via: ref

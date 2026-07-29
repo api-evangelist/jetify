@@ -1,0 +1,30 @@
+overlay: 1.0.0
+# generated: '2026-07-19'
+# method: generated
+# source: enhancements over openapi/jetify-nixhub-openapi.yml (does not mutate the original)
+info:
+  title: API Evangelist enrichment overlay for the Nixhub API
+  version: 1.0.0
+extends: ../openapi/jetify-nixhub-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: true
+    x-api-host: search.devbox.sh
+    x-rate-limit-model: per-ip-token-pool
+- target: $.paths['/search'].get
+  update:
+    x-idempotent: true
+    x-cacheable: true
+- target: $.paths['/pkg'].get
+  update:
+    x-idempotent: true
+    x-cacheable: true
+- target: $.paths['/resolve'].get
+  update:
+    x-idempotent: true
+    x-cacheable: true
+- target: $.paths.*.get.responses
+  update:
+    '429':
+      description: Too Many Requests - per-IP rate limit pool exhausted (replenishes 5/min).

@@ -1,0 +1,57 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  npm registry search (registry.npmjs.org), pkg.go.dev (all HTTP 200, 2026-07-19),
+  and github.com/jetify-com. Only first-party Jetify libraries included.
+packages:
+- name: typeid-js
+  registry: npm
+  url: https://www.npmjs.com/package/typeid-js
+  version: 1.2.0
+  language: TypeScript
+  official: true
+  source_code: https://github.com/jetify-com/typeid-js
+  description: Official implementation of the TypeID specification in TypeScript. Type-safe, K-sortable, globally unique identifiers inspired by Stripe IDs.
+- name: '@jetify/client'
+  registry: npm
+  url: https://www.npmjs.com/package/@jetify/client
+  version: 0.9.0-dev
+  language: JavaScript/TypeScript
+  official: true
+  license: Apache-2.0
+  description: Jetify client library for Node.js and the browser.
+- name: go.jetify.com/typeid
+  registry: pkg.go.dev
+  url: https://pkg.go.dev/go.jetify.com/typeid
+  language: Go
+  official: true
+  source_code: https://github.com/jetify-com/typeid
+  description: Type-safe, K-sortable, globally unique identifier (TypeID) implementation for Go.
+- name: go.jetify.com/ai
+  registry: pkg.go.dev
+  url: https://pkg.go.dev/go.jetify.com/ai
+  language: Go
+  official: true
+  source_code: https://github.com/jetify-com/ai
+  description: The AI framework for Go developers - build AI applications and agents with a free, open-source library.
+- name: go.jetify.com/envsec
+  registry: pkg.go.dev
+  url: https://pkg.go.dev/go.jetify.com/envsec
+  language: Go
+  official: true
+  source_code: https://github.com/jetify-com/envsec
+  description: Securely store environment variables and secrets in the cloud.
+- name: go.jetify.com/devbox
+  registry: pkg.go.dev
+  url: https://pkg.go.dev/go.jetify.com/devbox
+  language: Go
+  official: true
+  source_code: https://github.com/jetify-com/devbox
+  description: Instant, easy, and predictable development environments (Devbox core).
+- name: go.jetify.com/pkg
+  registry: pkg.go.dev
+  url: https://pkg.go.dev/go.jetify.com/pkg
+  language: Go
+  official: true
+  source_code: https://github.com/jetify-com/pkg
+  description: Collection of reusable Go utility packages maintained by Jetify.

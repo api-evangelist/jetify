@@ -1,0 +1,31 @@
+generated: '2026-07-19'
+method: derived
+source: derived from openapi/jetify-nixhub-openapi.yml 4xx responses + https://www.jetify.com/docs/nixhub/
+api: Nixhub API
+format: plain
+note: >-
+  The Nixhub API does not use RFC 9457 application/problem+json. Errors are conveyed via
+  standard HTTP status codes with a short descriptive plain message. Rate limiting adds 429.
+problem_types:
+- status: 400
+  title: Bad Request
+  operations: [searchPackages]
+  detail: 'Empty search query. Set a ?q=<query> query parameter.'
+- status: 400
+  title: Bad Request
+  operations: [getPackage]
+  detail: 'Empty package name. Set a ?name=<pkg> query parameter.'
+- status: 400
+  title: Bad Request
+  operations: [resolvePackageVersion]
+  detail: 'Empty name. Set a ?name=<value> query parameter.'
+- status: 404
+  title: Not Found
+  operations: [searchPackages, getPackage, resolvePackageVersion]
+  detail: The requested package or resource was not found.
+- status: 429
+  title: Too Many Requests
+  operations: [searchPackages, getPackage, resolvePackageVersion]
+  detail: >-
+    Per-IP rate limit exhausted. The pool starts at 1000 requests, decrements 1 per request,
+    and replenishes at 5 requests/minute. Retry after the pool replenishes or request a higher tier.

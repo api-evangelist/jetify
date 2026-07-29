@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.jetify.com/docs/nixhub/ + derived from openapi/jetify-nixhub-openapi.yml
+api: Nixhub API
+docs: https://www.jetify.com/docs/nixhub/
+auth_style:
+  type: none
+  note: Public API, no credentials; IP-based rate limiting. See authentication/jetify-authentication.yml
+transport:
+  protocol: REST over HTTPS
+  style: RESTful, standard HTTP methods and status codes
+  input: query parameters
+  content_type: application/json
+versioning:
+  style: url-prefix
+  current: v2
+  policy: >-
+    All v2 endpoints are considered stable and will not change in a backwards-incompatible way.
+    Breaking changes are introduced under a new version prefix. See lifecycle/jetify-lifecycle.yml
+pagination:
+  supported: false
+  note: The current version does not use pagination (the docs state it may be added in the future).
+idempotency:
+  supported: false
+  note: All published endpoints are read-only HTTP GET operations and are therefore naturally idempotent; no idempotency-key mechanism is documented or required.
+rate_limiting:
+  signaled_via: HTTP 429 Too Many Requests
+  model: Token pool per IP - starts at 1000 requests, decrements 1 per request, replenishes 5 requests/minute.
+error_envelope:
+  format: plain
+  note: >-
+    4xx responses return a short plain descriptive message (e.g. empty query / empty name).
+    Not RFC 9457 problem+json. See errors/jetify-problem-types.yml
+cross_links:
+  errors: errors/jetify-problem-types.yml
+  lifecycle: lifecycle/jetify-lifecycle.yml
+  authentication: authentication/jetify-authentication.yml

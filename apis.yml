@@ -1,8 +1,13 @@
 aid: jetify
 name: Jetify
-description: 'Jetify is a company surfaced as a portfolio company of gv, homebrew and added to the API
-  Evangelist network as a stub for enrichment. Sector: enterprise. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  Jetify builds developer tooling for reproducible environments and package management, backed by
+  the Nix ecosystem. Its open-source Devbox CLI creates instant, isolated, predictable development
+  shells; Jetify Cloud adds team secrets management, a private Nix package cache, and deployments;
+  Nixhub indexes over one million package versions across 100,000+ Nix packages and exposes a free,
+  public REST API for searching and resolving them; and Testpilot is an AI agent for autonomous
+  end-to-end testing. Jetify is backed by GV and Homebrew. This profile was enriched by the API
+  Evangelist pipeline from Jetify's public docs, npm/Go registries, and live API probes.
 url: https://raw.githubusercontent.com/api-evangelist/jetify/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,13 +16,75 @@ x-backed-by:
 - homebrew
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: open
+  trial: false
+  try_now: false
+  public: true
+  label: Open access
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
+image: https://avatars.githubusercontent.com/u/65328393?v=4
 tags:
 - Company
 - Enterprise
-apis: []
+- Developer Tools
+- Nix
+- Package Management
+- Developer Environments
+- Reproducible Builds
+- CLI
+- Search
+apis:
+- aid: jetify:jetify-pkg-api
+  name: Jetify Pkg API
+  description: The Pkg API from Jetify — 1 operation(s) for pkg.
+  humanURL: https://www.jetify.com/docs/nixhub/
+  baseURL: https://search.devbox.sh/v2
+  tags:
+  - Pkg
+  properties:
+  - type: OpenAPI
+    url: openapi/jetify-pkg-api-openapi.yml
+  - type: Documentation
+    url: https://www.jetify.com/docs/nixhub/
+  - type: APIReference
+    url: https://www.jetify.com/docs/nixhub/
+- aid: jetify:jetify-resolve-api
+  name: Jetify Resolve API
+  description: The Resolve API from Jetify — 1 operation(s) for resolve.
+  humanURL: https://www.jetify.com/docs/nixhub/
+  baseURL: https://search.devbox.sh/v2
+  tags:
+  - Resolve
+  properties:
+  - type: OpenAPI
+    url: openapi/jetify-resolve-api-openapi.yml
+  - type: Documentation
+    url: https://www.jetify.com/docs/nixhub/
+  - type: APIReference
+    url: https://www.jetify.com/docs/nixhub/
+- aid: jetify:jetify-search-api
+  name: Jetify Search API
+  description: The Search API from Jetify — 1 operation(s) for search.
+  humanURL: https://www.jetify.com/docs/nixhub/
+  baseURL: https://search.devbox.sh/v2
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/jetify-search-api-openapi.yml
+  - type: Documentation
+    url: https://www.jetify.com/docs/nixhub/
+  - type: APIReference
+    url: https://www.jetify.com/docs/nixhub/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -26,3 +93,58 @@ maintainers:
 common:
 - type: Website
   url: https://www.jetify.com
+- type: DeveloperPortal
+  url: https://www.jetify.com/docs/
+- type: Documentation
+  url: https://www.jetify.com/docs/
+- type: APIReference
+  url: https://www.jetify.com/docs/nixhub/
+- type: Blog
+  url: https://www.jetify.com/blog
+- type: GitHubOrganization
+  url: https://github.com/jetify-com
+- type: Pricing
+  url: https://www.jetify.com/pricing
+- type: SignUp
+  url: https://cloud.jetify.com
+- type: TermsOfService
+  url: https://www.jetify.com/legal/terms
+- type: PrivacyPolicy
+  url: https://www.jetify.com/legal/privacy
+- type: SDKs
+  url: packages/jetify-packages.yml
+- type: Packages
+  url: packages/jetify-packages.yml
+- type: CLI
+  url: cli/jetify-cli.yml
+- type: LLMsTxt
+  url: llms/jetify-llms.txt
+- type: WellKnown
+  url: well-known/jetify-well-known.yml
+- type: DomainSecurity
+  url: security/jetify-domain-security.yml
+- type: Authentication
+  url: authentication/jetify-authentication.yml
+- type: Conventions
+  url: conventions/jetify-conventions.yml
+- type: Idempotency
+  url: conventions/jetify-conventions.yml
+- type: Lifecycle
+  url: lifecycle/jetify-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/jetify-lifecycle.yml
+- type: Conformance
+  url: conformance/jetify-conformance.yml
+- type: ErrorCatalog
+  url: errors/jetify-problem-types.yml
+- type: DataModel
+  url: data-model/jetify-data-model.yml
+- type: MCPServer
+  url: mcp/jetify-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.jetify.com/docs/nixhub/ (Versioning + Rate Limits sections)
+api: Nixhub API
+versioning:
+  style: url-prefix
+  current_version: v2
+  stability: >-
+    All v2 endpoints are considered stable and will not change in a backwards-incompatible way.
+  breaking_change_policy: >-
+    Breaking changes are introduced in a new version of the API, with a new version prefix.
+deprecation:
+  policy_documented: true
+  mechanism: version-prefix supersession (new prefix), no per-operation Sunset/Deprecation headers documented
+  sunset_headers: false
+rate_limits:
+  model: Per-IP token pool - 1000 request pool, -1 per request, +5 per minute; 429 when empty.
+  paid_tier_request: https://form.typeform.com/to/hueeLe9S
+  enterprise_contact: https://calendly.com/d/cprm-dq6-y9y/nixhub-enterprise-chat
+status_page:
+  found: false
+  note: No dedicated status page discovered for the Nixhub API as of probe date.
+sla:
+  found: false
+  note: Free for personal use; commercial/SLA terms arranged via paid-tier request.

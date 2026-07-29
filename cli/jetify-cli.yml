@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.jetify.com/docs/devbox/ and https://www.jetify.com/docs/ (llms.txt index), github.com/jetify-com/devbox
+clis:
+- name: devbox
+  description: >-
+    Command-line tool that lets you create isolated, reproducible development shells.
+    Manages OS-level packages (like brew/apt) declared in a devbox.json file, and can
+    render environments as local shells, devcontainers, Dockerfiles, or remote cloud shells.
+  source_code: https://github.com/jetify-com/devbox
+  docs: https://www.jetify.com/docs/devbox/
+  install:
+  - method: script
+    command: curl -fsSL https://get.jetify.com/devbox | bash
+  - method: github-action
+    reference: jetify-com/devbox-install-action
+  command_groups:
+  - name: environment
+    commands: [init, shell, run, add, rm, update, install]
+  - name: services
+    commands: [services]
+  - name: config
+    commands: [generate, info, version]
+  - name: cloud
+    commands: [auth, secrets]
+- name: envsec
+  description: CLI to securely store and retrieve environment variables and secrets in the cloud (Jetify Cloud secrets).
+  source_code: https://github.com/jetify-com/envsec
+  docs: https://www.jetify.com/docs/

@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: derived
+source: derived from openapi/jetify-nixhub-openapi.yml + https://www.jetify.com/docs/nixhub/
+api: Nixhub API
+standards:
+- id: rest
+  conforms: true
+  evidence: Documented as a RESTful API using standard HTTP methods and status codes with JSON responses.
+- id: oauth2
+  conforms: false
+  evidence: No OAuth2 security schemes; API is public and unauthenticated.
+- id: oidc
+  conforms: false
+  evidence: No OpenID Connect / .well-known/openid-configuration (probed 404).
+- id: rfc9457
+  conforms: false
+  evidence: Errors are plain HTTP status + short message, not application/problem+json.
+- id: pagination
+  conforms: false
+  evidence: Docs explicitly state the current version does not use pagination.
+- id: rate-limiting
+  conforms: true
+  evidence: Per-IP token-pool rate limiting documented; 429 Too Many Requests returned when exhausted.
+- id: idempotency
+  conforms: true
+  evidence: All published operations are read-only HTTP GET and are naturally idempotent.
+- id: json-api
+  conforms: false
+  evidence: Custom JSON envelopes, not the JSON:API media type.
+- id: fhir
+  conforms: false
+  evidence: Not a healthcare API.

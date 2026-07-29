@@ -1,0 +1,18 @@
+{
+  "provider": "jetify",
+  "sources": [
+    "jetify-pkg-api-openapi.yml",
+    "jetify-resolve-api-openapi.yml",
+    "jetify-search-api-openapi.yml"
+  ],
+  "outputs": [
+    "jetify-pkg-api-openapi.yml",
+    "jetify-resolve-api-openapi.yml",
+    "jetify-search-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

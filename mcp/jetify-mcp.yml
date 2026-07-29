@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: >-
+  No official hosted/remote MCP server published by Jetify for the Nixhub API was found
+  (Testpilot documents CONSUMING external MCP servers, not exposing one). This is a candidate
+  tool list derived from the Nixhub OpenAPI operations for a potential MCP server.
+api: Nixhub API
+server:
+  official: false
+  hosted: false
+tools:
+- name: search_packages
+  operationId: searchPackages
+  description: Search for Nix packages by name.
+  inputs: [q]
+- name: get_package
+  operationId: getPackage
+  description: Get details and version history for a specific Nix package.
+  inputs: [name]
+- name: resolve_package_version
+  operationId: resolvePackageVersion
+  description: Resolve a package name + version to a nixpkgs commit and flake installable.
+  inputs: [name, version]
