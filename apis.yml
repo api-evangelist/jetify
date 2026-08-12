@@ -91,6 +91,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/jetify-nixhub-overlay.yaml
 - type: Website
   url: https://www.jetify.com
 - type: DeveloperPortal
