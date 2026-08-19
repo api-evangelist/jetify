@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nixhub Pkg Resolve API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resolve",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Resolve a Package Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://search.devbox.sh/v2/resolve",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the package you want to resolve. Must be a valid Nixpkgs package name."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The version string of the package you want to resolve."
+              }
+            ]
+          },
+          "docs": "Resolve a package name + version string to the latest matching version available in Nixpkgs. The response includes the flake installable information for the package on each supported platform."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

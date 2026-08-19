@@ -1,0 +1,200 @@
+{
+  "item": [
+    {
+      "id": "41cb22f1-5c8e-4eb5-99cc-9f6f8c9f2472",
+      "name": "Resolve",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2281bdd-bfd7-4ca4-8b75-9472f4db0ad9",
+          "name": "Resolve a Package Version",
+          "request": {
+            "name": "Resolve a Package Version",
+            "description": {
+              "content": "Resolve a package name + version string to the latest matching version available in Nixpkgs. The response includes the flake installable information for the package on each supported platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resolve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) The name of the package you want to resolve. Must be a valid Nixpkgs package name."
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "(Required) The version string of the package you want to resolve."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13800109-7157-4065-9fbb-8723f92ae0f6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"version\": \"string\",\n  \"summary\": \"string\",\n  \"systems\": {\n    \"key_0\": {\n      \"flake_installable\": {\n        \"ref\": {\n          \"type\": \"string\",\n          \"owner\": \"string\",\n          \"repo\": \"string\",\n          \"rev\": \"string\"\n        },\n        \"attr_path\": \"string\"\n      },\n      \"last_updated\": \"string\",\n      \"outputs\": [\n        {\n          \"name\": \"string\",\n          \"path\": \"string\",\n          \"default\": true,\n          \"nar\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"path\": \"string\",\n          \"default\": true,\n          \"nar\": \"string\"\n        }\n      ]\n    },\n    \"key_1\": {\n      \"flake_installable\": {\n        \"ref\": {\n          \"type\": \"string\",\n          \"owner\": \"string\",\n          \"repo\": \"string\",\n          \"rev\": \"string\"\n        },\n        \"attr_path\": \"string\"\n      },\n      \"last_updated\": \"string\",\n      \"outputs\": [\n        {\n          \"name\": \"string\",\n          \"path\": \"string\",\n          \"default\": false,\n          \"nar\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"path\": \"string\",\n          \"default\": false,\n          \"nar\": \"string\"\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a984f585-bbcf-41a8-97b9-24c1d1249212",
+              "name": "400 Bad Request: empty name (set a ?name=<value> query parameter)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ed472dec-94ad-4944-8c90-076a0d1898b9",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://search.devbox.sh/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fcfbc7a8-6d09-4a09-9ecb-caa4125d39db",
+    "name": "Nixhub Pkg Resolve API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Nixhub API lets you search over 1 million package versions for over 100,000 Nix packages. Search for packages, look up version history, and resolve a package name + version to a nixpkgs commit and flake installable for use with Devbox or Nix. Free for personal use, subject to IP-based rate limiting. Built and operated by Jetify.\n\nContact Support:\n Name: Jetify",
+      "type": "text/plain"
+    }
+  }
+}

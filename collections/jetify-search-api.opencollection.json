@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nixhub Pkg Search API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://search.devbox.sh/v2/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query."
+              }
+            ]
+          },
+          "docs": "Search for packages in the Nixpkgs repository using a search query. The response includes a list of package names along with their description. To get available versions and installables for a package, use the returned name with /pkg."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

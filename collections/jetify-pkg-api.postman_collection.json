@@ -1,0 +1,182 @@
+{
+  "item": [
+    {
+      "id": "c211496d-37c5-41b0-9e00-70ecf616f69e",
+      "name": "Pkg",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11962ace-d5f9-40ec-9a94-495b7b9a7ba2",
+          "name": "Get a Package",
+          "request": {
+            "name": "Get a Package",
+            "description": {
+              "content": "Get information about a specific package in Nixpkgs, including a list of releases, platforms, and outputs. Use this endpoint when you know the package name. To search for packages use /search; for only the latest matching version use /resolve.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pkg"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) The name of the package you want to look up. Must be a valid Nixpkgs package name."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb9248c3-f431-40f8-a50e-eac46e15ee54",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pkg"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"summary\": \"string\",\n  \"homepage_url\": \"string\",\n  \"license\": \"string\",\n  \"releases\": [\n    {\n      \"version\": \"string\",\n      \"last_updated\": \"string\",\n      \"platforms\": [\n        {\n          \"arch\": \"string\",\n          \"os\": \"string\",\n          \"systems\": \"string\",\n          \"attribute_path\": \"string\",\n          \"commit_hash\": \"string\",\n          \"date\": \"string\",\n          \"outputs\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"arch\": \"string\",\n          \"os\": \"string\",\n          \"systems\": \"string\",\n          \"attribute_path\": \"string\",\n          \"commit_hash\": \"string\",\n          \"date\": \"string\",\n          \"outputs\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"platforms_summary\": \"string\",\n      \"outputs_summary\": \"string\"\n    },\n    {\n      \"version\": \"string\",\n      \"last_updated\": \"string\",\n      \"platforms\": [\n        {\n          \"arch\": \"string\",\n          \"os\": \"string\",\n          \"systems\": \"string\",\n          \"attribute_path\": \"string\",\n          \"commit_hash\": \"string\",\n          \"date\": \"string\",\n          \"outputs\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"arch\": \"string\",\n          \"os\": \"string\",\n          \"systems\": \"string\",\n          \"attribute_path\": \"string\",\n          \"commit_hash\": \"string\",\n          \"date\": \"string\",\n          \"outputs\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"platforms_summary\": \"string\",\n      \"outputs_summary\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18bd3f6d-738b-4952-afea-78f756081216",
+              "name": "Bad Request: empty package name (set a ?name=<pkg> query parameter)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pkg"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "43d4596e-1c14-4525-9d0d-e2b3f16ec1c6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pkg"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://search.devbox.sh/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "09c8c9b0-c56a-4fe8-8fd0-b047eeb4b200",
+    "name": "Nixhub Pkg API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Nixhub API lets you search over 1 million package versions for over 100,000 Nix packages. Search for packages, look up version history, and resolve a package name + version to a nixpkgs commit and flake installable for use with Devbox or Nix. Free for personal use, subject to IP-based rate limiting. Built and operated by Jetify.\n\nContact Support:\n Name: Jetify",
+      "type": "text/plain"
+    }
+  }
+}
