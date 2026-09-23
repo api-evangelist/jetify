@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Nixhub Pkg Resolve API
+  title: Nixhub Resolve API
   version: 2.0.0
   description: The Nixhub API lets you search over 1 million package versions for over 100,000 Nix packages. Search for packages, look up version history, and resolve a package name + version to a nixpkgs commit and flake installable for use with Devbox or Nix. Free for personal use, subject to IP-based rate limiting. Built and operated by Jetify.
   contact:
@@ -46,6 +46,31 @@ paths:
       - Resolve
 components:
   schemas:
+    FlakeInstallable:
+      type: object
+      description: The information needed to install this package as a flake reference.
+      properties:
+        ref:
+          $ref: '#/components/schemas/FlakeRef'
+        attr_path:
+          type: string
+          description: The attribute path to the package in the flake. Used to install with Nix or Devbox.
+    FlakeRef:
+      type: object
+      description: The full Nix reference to the flake that contains this package.
+      properties:
+        type:
+          type: string
+          description: The type of flake reference. Usually 'github'.
+        owner:
+          type: string
+          description: The owner of the repository that contains the flake. Usually 'NixOS'.
+        repo:
+          type: string
+          description: The repository that contains the flake. Usually 'nixpkgs'.
+        rev:
+          type: string
+          description: The Git revision of the flake. Usually a commit hash.
     SystemInstallable:
       type: object
       properties:
@@ -72,22 +97,6 @@ components:
         nar:
           type: string
           description: The path to the package's NAR (Nix Archive) file containing build artifacts.
-    FlakeRef:
-      type: object
-      description: The full Nix reference to the flake that contains this package.
-      properties:
-        type:
-          type: string
-          description: The type of flake reference. Usually 'github'.
-        owner:
-          type: string
-          description: The owner of the repository that contains the flake. Usually 'NixOS'.
-        repo:
-          type: string
-          description: The repository that contains the flake. Usually 'nixpkgs'.
-        rev:
-          type: string
-          description: The Git revision of the flake. Usually a commit hash.
     ResolvedPackage:
       type: object
       properties:
@@ -104,12 +113,3 @@ components:
           description: A map of Nix system identifiers (aarch64-darwin, aarch64-linux, x86_64-darwin, x86_64-linux) to the installable details of the package on that system.
           additionalProperties:
             $ref: '#/components/schemas/SystemInstallable'
-    FlakeInstallable:
-      type: object
-      description: The information needed to install this package as a flake reference.
-      properties:
-        ref:
-          $ref: '#/components/schemas/FlakeRef'
-        attr_path:
-          type: string
-          description: The attribute path to the package in the flake. Used to install with Nix or Devbox.

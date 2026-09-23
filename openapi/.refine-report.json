@@ -1,9 +1,7 @@
 {
   "provider": "jetify",
   "sources": [
-    "jetify-pkg-api-openapi.yml",
-    "jetify-resolve-api-openapi.yml",
-    "jetify-search-api-openapi.yml"
+    "_original/jetify-nixhub-openapi.yml"
   ],
   "outputs": [
     "jetify-pkg-api-openapi.yml",
@@ -13,6 +11,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "jetify-nixhub-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "jetify-nixhub-openapi.yml: tagged paths GET /search -> Search",
+    "jetify-nixhub-openapi.yml: tagged paths GET /pkg -> Pkg",
+    "jetify-nixhub-openapi.yml: tagged paths GET /resolve -> Resolve",
+    "jetify-nixhub-openapi.yml: declared missing tag: Pkg",
+    "jetify-nixhub-openapi.yml: declared missing tag: Resolve",
+    "jetify-nixhub-openapi.yml: declared missing tag: Search",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "jetify-pkg-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jetify-resolve-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jetify-search-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
