@@ -40,6 +40,18 @@ paths:
       - Search
 components:
   schemas:
+    SearchResult:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the package that matched the search query.
+        summary:
+          type: string
+          description: A short description of the package.
+        last_updated:
+          type: string
+          description: The last time this package was updated in the Nixpkgs repo.
     SearchResponse:
       type: object
       properties:
@@ -54,15 +66,3 @@ components:
           description: A list of SearchResults that match the query. Empty if no results were found.
           items:
             $ref: '#/components/schemas/SearchResult'
-    SearchResult:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the package that matched the search query.
-        summary:
-          type: string
-          description: A short description of the package.
-        last_updated:
-          type: string
-          description: The last time this package was updated in the Nixpkgs repo.

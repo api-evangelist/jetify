@@ -40,6 +40,38 @@ paths:
       - Pkg
 components:
   schemas:
+    Output:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the output (e.g., out, lib, dev).
+        path:
+          type: string
+          description: The unique path to the output in the Nix store.
+        default:
+          type: boolean
+          description: Whether this output is the default output for the package.
+        nar:
+          type: string
+          description: The path to the package's NAR (Nix Archive) file containing build artifacts.
+    Release:
+      type: object
+      properties:
+        version:
+          type: string
+        last_updated:
+          type: string
+        platforms:
+          type: array
+          items:
+            $ref: '#/components/schemas/Platform'
+        platforms_summary:
+          type: string
+          description: A summary string that represents the platforms the release can be installed on.
+        outputs_summary:
+          type: string
+          description: A summary string of the outputs (e.g., out, lib, dev) available for the release.
     Platform:
       type: object
       properties:
@@ -63,21 +95,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Output'
-    Output:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the output (e.g., out, lib, dev).
-        path:
-          type: string
-          description: The unique path to the output in the Nix store.
-        default:
-          type: boolean
-          description: Whether this output is the default output for the package.
-        nar:
-          type: string
-          description: The path to the package's NAR (Nix Archive) file containing build artifacts.
     Package:
       type: object
       properties:
@@ -97,20 +114,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Release'
-    Release:
-      type: object
-      properties:
-        version:
-          type: string
-        last_updated:
-          type: string
-        platforms:
-          type: array
-          items:
-            $ref: '#/components/schemas/Platform'
-        platforms_summary:
-          type: string
-          description: A summary string that represents the platforms the release can be installed on.
-        outputs_summary:
-          type: string
-          description: A summary string of the outputs (e.g., out, lib, dev) available for the release.
