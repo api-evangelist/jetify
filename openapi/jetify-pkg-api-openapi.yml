@@ -40,38 +40,25 @@ paths:
       - Pkg
 components:
   schemas:
-    Output:
+    Package:
       type: object
       properties:
         name:
           type: string
-          description: The name of the output (e.g., out, lib, dev).
-        path:
+          description: The name of the package in Nixhub/Devbox.
+        summary:
           type: string
-          description: The unique path to the output in the Nix store.
-        default:
-          type: boolean
-          description: Whether this output is the default output for the package.
-        nar:
+          description: A short description of the package.
+        homepage_url:
           type: string
-          description: The path to the package's NAR (Nix Archive) file containing build artifacts.
-    Release:
-      type: object
-      properties:
-        version:
+          description: The URL to the package's project homepage.
+        license:
           type: string
-        last_updated:
-          type: string
-        platforms:
+          description: The software license of the package.
+        releases:
           type: array
           items:
-            $ref: '#/components/schemas/Platform'
-        platforms_summary:
-          type: string
-          description: A summary string that represents the platforms the release can be installed on.
-        outputs_summary:
-          type: string
-          description: A summary string of the outputs (e.g., out, lib, dev) available for the release.
+            $ref: '#/components/schemas/Release'
     Platform:
       type: object
       properties:
@@ -95,22 +82,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Output'
-    Package:
+    Release:
+      type: object
+      properties:
+        version:
+          type: string
+        last_updated:
+          type: string
+        platforms:
+          type: array
+          items:
+            $ref: '#/components/schemas/Platform'
+        platforms_summary:
+          type: string
+          description: A summary string that represents the platforms the release can be installed on.
+        outputs_summary:
+          type: string
+          description: A summary string of the outputs (e.g., out, lib, dev) available for the release.
+    Output:
       type: object
       properties:
         name:
           type: string
-          description: The name of the package in Nixhub/Devbox.
-        summary:
+          description: The name of the output (e.g., out, lib, dev).
+        path:
           type: string
-          description: A short description of the package.
-        homepage_url:
+          description: The unique path to the output in the Nix store.
+        default:
+          type: boolean
+          description: Whether this output is the default output for the package.
+        nar:
           type: string
-          description: The URL to the package's project homepage.
-        license:
-          type: string
-          description: The software license of the package.
-        releases:
-          type: array
-          items:
-            $ref: '#/components/schemas/Release'
+          description: The path to the package's NAR (Nix Archive) file containing build artifacts.
