@@ -46,22 +46,6 @@ paths:
       - Resolve
 components:
   schemas:
-    FlakeRef:
-      type: object
-      description: The full Nix reference to the flake that contains this package.
-      properties:
-        type:
-          type: string
-          description: The type of flake reference. Usually 'github'.
-        owner:
-          type: string
-          description: The owner of the repository that contains the flake. Usually 'NixOS'.
-        repo:
-          type: string
-          description: The repository that contains the flake. Usually 'nixpkgs'.
-        rev:
-          type: string
-          description: The Git revision of the flake. Usually a commit hash.
     SystemInstallable:
       type: object
       properties:
@@ -73,21 +57,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Output'
-    Output:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the output (e.g., out, lib, dev).
-        path:
-          type: string
-          description: The unique path to the output in the Nix store.
-        default:
-          type: boolean
-          description: Whether this output is the default output for the package.
-        nar:
-          type: string
-          description: The path to the package's NAR (Nix Archive) file containing build artifacts.
     FlakeInstallable:
       type: object
       description: The information needed to install this package as a flake reference.
@@ -113,3 +82,34 @@ components:
           description: A map of Nix system identifiers (aarch64-darwin, aarch64-linux, x86_64-darwin, x86_64-linux) to the installable details of the package on that system.
           additionalProperties:
             $ref: '#/components/schemas/SystemInstallable'
+    Output:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the output (e.g., out, lib, dev).
+        path:
+          type: string
+          description: The unique path to the output in the Nix store.
+        default:
+          type: boolean
+          description: Whether this output is the default output for the package.
+        nar:
+          type: string
+          description: The path to the package's NAR (Nix Archive) file containing build artifacts.
+    FlakeRef:
+      type: object
+      description: The full Nix reference to the flake that contains this package.
+      properties:
+        type:
+          type: string
+          description: The type of flake reference. Usually 'github'.
+        owner:
+          type: string
+          description: The owner of the repository that contains the flake. Usually 'NixOS'.
+        repo:
+          type: string
+          description: The repository that contains the flake. Usually 'nixpkgs'.
+        rev:
+          type: string
+          description: The Git revision of the flake. Usually a commit hash.

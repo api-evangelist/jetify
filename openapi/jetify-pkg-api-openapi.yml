@@ -59,6 +59,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Release'
+    Release:
+      type: object
+      properties:
+        version:
+          type: string
+        last_updated:
+          type: string
+        platforms:
+          type: array
+          items:
+            $ref: '#/components/schemas/Platform'
+        platforms_summary:
+          type: string
+          description: A summary string that represents the platforms the release can be installed on.
+        outputs_summary:
+          type: string
+          description: A summary string of the outputs (e.g., out, lib, dev) available for the release.
     Platform:
       type: object
       properties:
@@ -82,23 +99,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Output'
-    Release:
-      type: object
-      properties:
-        version:
-          type: string
-        last_updated:
-          type: string
-        platforms:
-          type: array
-          items:
-            $ref: '#/components/schemas/Platform'
-        platforms_summary:
-          type: string
-          description: A summary string that represents the platforms the release can be installed on.
-        outputs_summary:
-          type: string
-          description: A summary string of the outputs (e.g., out, lib, dev) available for the release.
     Output:
       type: object
       properties:
