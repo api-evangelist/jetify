@@ -46,17 +46,6 @@ paths:
       - Resolve
 components:
   schemas:
-    SystemInstallable:
-      type: object
-      properties:
-        flake_installable:
-          $ref: '#/components/schemas/FlakeInstallable'
-        last_updated:
-          type: string
-        outputs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Output'
     FlakeInstallable:
       type: object
       description: The information needed to install this package as a flake reference.
@@ -66,6 +55,22 @@ components:
         attr_path:
           type: string
           description: The attribute path to the package in the flake. Used to install with Nix or Devbox.
+    FlakeRef:
+      type: object
+      description: The full Nix reference to the flake that contains this package.
+      properties:
+        type:
+          type: string
+          description: The type of flake reference. Usually 'github'.
+        owner:
+          type: string
+          description: The owner of the repository that contains the flake. Usually 'NixOS'.
+        repo:
+          type: string
+          description: The repository that contains the flake. Usually 'nixpkgs'.
+        rev:
+          type: string
+          description: The Git revision of the flake. Usually a commit hash.
     ResolvedPackage:
       type: object
       properties:
@@ -97,19 +102,14 @@ components:
         nar:
           type: string
           description: The path to the package's NAR (Nix Archive) file containing build artifacts.
-    FlakeRef:
+    SystemInstallable:
       type: object
-      description: The full Nix reference to the flake that contains this package.
       properties:
-        type:
+        flake_installable:
+          $ref: '#/components/schemas/FlakeInstallable'
+        last_updated:
           type: string
-          description: The type of flake reference. Usually 'github'.
-        owner:
-          type: string
-          description: The owner of the repository that contains the flake. Usually 'NixOS'.
-        repo:
-          type: string
-          description: The repository that contains the flake. Usually 'nixpkgs'.
-        rev:
-          type: string
-          description: The Git revision of the flake. Usually a commit hash.
+        outputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Output'
